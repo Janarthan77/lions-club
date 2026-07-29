@@ -90,6 +90,25 @@ body {
   animation: goldPulse 3s infinite ease-in-out;
 }
 
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 35s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
 ::-webkit-scrollbar {
   width: 10px;
 }
@@ -103,3 +122,4 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: #b38728;
 }
+
