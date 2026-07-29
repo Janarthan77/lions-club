@@ -41,7 +41,6 @@ function useCountUp(end, duration = 1800, started = false) {
     const step = (timestamp) => {
       if (!startTime) startTime = timestamp;
       const progress = Math.min((timestamp - startTime) / duration, 1);
-      // Ease-out cubic
       const eased = 1 - Math.pow(1 - progress, 3);
       setCount(Math.floor(eased * end));
       if (progress < 1) requestAnimationFrame(step);
@@ -52,37 +51,37 @@ function useCountUp(end, duration = 1800, started = false) {
   return count;
 }
 
-// Individual stat card with its own count-up
+// Individual stat card with count-up
 const StatCard = ({ stat, index, started }) => {
   const count = useCountUp(stat.end, 1800 + index * 150, started);
   const IconComp = stat.icon;
 
   return (
-    <div className="group relative flex flex-col items-center justify-center py-8 px-6 overflow-hidden cursor-default select-none transition-all duration-300 hover:bg-amber-50">
+    <div className="group relative flex flex-col items-center justify-center py-5 px-2 sm:py-8 sm:px-6 overflow-hidden cursor-default select-none transition-all duration-300 hover:bg-amber-50">
 
       {/* Hover gold top border */}
       <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-amber-400 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
       {/* Icon */}
-      <div className="w-14 h-14 rounded-2xl gold-gradient-bg flex items-center justify-center mb-4 shadow-lg shadow-amber-300/30 group-hover:scale-110 group-hover:shadow-amber-400/40 transition-all duration-300">
-        <IconComp className="w-6 h-6 text-[#0a192f]" strokeWidth={2.5} />
+      <div className="w-10 h-10 sm:w-14 sm:h-14 rounded-xl sm:rounded-2xl gold-gradient-bg flex items-center justify-center mb-2 sm:mb-4 shadow-lg shadow-amber-300/30 group-hover:scale-110 group-hover:shadow-amber-400/40 transition-all duration-300">
+        <IconComp className="w-4 h-4 sm:w-6 sm:h-6 text-[#0a192f]" strokeWidth={2.5} />
       </div>
 
       {/* Count */}
-      <div className="flex items-end gap-0.5 mb-1">
+      <div className="flex items-end gap-0.5 mb-0.5 sm:mb-1">
         <span
           className="font-black text-[#0a192f] leading-none tabular-nums"
-          style={{ fontSize: 'clamp(2rem, 3.5vw, 2.75rem)' }}
+          style={{ fontSize: 'clamp(1.5rem, 3.5vw, 2.75rem)' }}
         >
           {count.toLocaleString()}
         </span>
-        <span className="text-amber-500 font-black text-2xl leading-none mb-0.5">{stat.suffix}</span>
+        <span className="text-amber-500 font-black text-lg sm:text-2xl leading-none mb-0.5">{stat.suffix}</span>
       </div>
 
       {/* Tamil label */}
-      <p className="text-[#0a192f] font-extrabold text-sm text-center tracking-wide">{stat.label}</p>
+      <p className="text-[#0a192f] font-extrabold text-xs sm:text-sm text-center tracking-wide">{stat.label}</p>
       {/* English sublabel */}
-      <p className="text-slate-400 font-semibold text-xs text-center mt-0.5 tracking-wider">{stat.sublabel}</p>
+      <p className="text-slate-400 font-semibold text-[10px] sm:text-xs text-center mt-0.5 tracking-wider">{stat.sublabel}</p>
 
       {/* Hover glow bottom */}
       <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-amber-300 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -100,7 +99,7 @@ export const Hero = () => {
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => { if (entry.isIntersecting) setStatsStarted(true); },
-      { threshold: 0.3 }
+      { threshold: 0.2 }
     );
     if (statsRef.current) observer.observe(statsRef.current);
     return () => observer.disconnect();
@@ -136,7 +135,7 @@ export const Hero = () => {
         style={{ backgroundImage: `url('${currentSlide.image}')`, transform: 'scale(1.03)' }}
       >
         <div className="absolute inset-0" style={{
-          background: 'linear-gradient(105deg, rgba(5,10,30,0.72) 0%, rgba(5,10,30,0.45) 45%, rgba(5,10,30,0.15) 100%)'
+          background: 'linear-gradient(105deg, rgba(5,10,30,0.78) 0%, rgba(5,10,30,0.55) 45%, rgba(5,10,30,0.25) 100%)'
         }} />
         <div className="absolute bottom-0 left-0 right-0 h-40" style={{
           background: 'linear-gradient(to top, rgba(5,10,30,0.95) 0%, transparent 100%)'
@@ -144,7 +143,7 @@ export const Hero = () => {
       </div>
 
       {/* Hero Content */}
-      <div className="relative flex-1 flex items-center z-10 pt-28 pb-8">
+      <div className="relative flex-1 flex items-center z-10 pt-28 sm:pt-36 lg:pt-32 pb-12 sm:pb-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
           <div
             className="max-w-5xl"
@@ -155,33 +154,74 @@ export const Hero = () => {
             }}
           >
             {/* Badge */}
-            <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-black/30 backdrop-blur-md border border-amber-400/50 text-amber-300 text-xs font-extrabold tracking-wide shadow-lg mb-7">
-              <span className="w-2 h-2 rounded-full bg-amber-400 animate-ping" />
-              <span>{currentSlide.badge}</span>
+            <div className="inline-flex items-center gap-2 sm:gap-2.5 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full bg-black/40 backdrop-blur-md border border-amber-400/50 text-amber-300 text-[11px] sm:text-xs font-extrabold tracking-wide shadow-lg mb-5 sm:mb-7">
+              <span className="w-2 h-2 rounded-full bg-amber-400 animate-ping shrink-0" />
+              <span className="truncate">{currentSlide.badge}</span>
             </div>
 
             {/* Tagline */}
-            <p className="text-white/65 text-sm sm:text-base font-semibold tracking-[0.25em] uppercase mb-3 drop-shadow">
+            <p className="text-white/70 text-xs sm:text-base font-semibold tracking-[0.2em] sm:tracking-[0.25em] uppercase mb-2 sm:mb-3 drop-shadow">
               {currentSlide.tagline}
             </p>
 
             {/* Main Title */}
-            <h1 className="font-serif-gold leading-none drop-shadow-2xl">
-              <span className="block font-extrabold text-white leading-tight" style={{ fontSize: 'clamp(2.8rem, 6vw, 5rem)' }}>
+            <h1 className="font-serif-gold leading-tight drop-shadow-2xl">
+              <span className="block font-extrabold text-white leading-snug" style={{ fontSize: 'clamp(1.35rem, 5vw, 3.8rem)' }}>
                 {currentSlide.title}
               </span>
-              <span className="block font-black gold-text-bright leading-tight" style={{ fontSize: 'clamp(3.2rem, 7.5vw, 6.5rem)', letterSpacing: '-0.01em' }}>
+              <span className="block font-black gold-text-bright leading-tight mt-1" style={{ fontSize: 'clamp(1.7rem, 6.5vw, 4.8rem)', letterSpacing: '-0.01em' }}>
                 {currentSlide.subtitle}
               </span>
             </h1>
+
           </div>
         </div>
       </div>
 
       {/* ─── Premium Stats Bar ─── */}
-      <div ref={statsRef} className="relative z-10">
+      <div ref={statsRef} className="relative z-20">
         {/* Gold top accent line */}
-        <div className="h-1 bg-gradient-to-r from-amber-600 via-amber-400 to-amber-600" />
+        <div className="relative h-1 bg-gradient-to-r from-amber-600 via-amber-400 to-amber-600">
+          
+          {/* Mobile Navigation Arrows & Dots Centered Directly on the Orange Line */}
+          <div className="sm:hidden absolute inset-x-0 top-1/2 -translate-y-1/2 flex items-center justify-between px-3 z-30 pointer-events-none">
+            <button
+              onClick={prevSlide}
+              aria-label="Previous slide"
+              className="pointer-events-auto w-10 h-10 rounded-full bg-[#0a192f] border-2 border-amber-400 text-amber-400 hover:bg-amber-500 hover:text-slate-950 transition-all flex items-center justify-center shadow-xl shadow-slate-950/60 cursor-pointer"
+            >
+              <ChevronLeft className="w-5 h-5 stroke-[2.5]" />
+            </button>
+
+            {/* Mobile Slide Dots inside glass badge */}
+            <div className="pointer-events-auto flex items-center gap-2 bg-[#0a192f]/90 px-3 py-1 rounded-full border border-amber-400/50 backdrop-blur-md shadow-lg">
+              {heroSlidesData.map((_, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => handleSlideChange(idx)}
+                  aria-label={`Go to slide ${idx + 1}`}
+                  style={{
+                    width: idx === currentIdx ? '22px' : '6px',
+                    height: '6px',
+                    borderRadius: '99px',
+                    background: idx === currentIdx ? '#f59e0b' : 'rgba(255,255,255,0.4)',
+                    boxShadow: idx === currentIdx ? '0 0 10px rgba(245,158,11,0.8)' : 'none',
+                    transition: 'all 0.3s ease',
+                  }}
+                />
+              ))}
+            </div>
+
+            <button
+              onClick={nextSlide}
+              aria-label="Next slide"
+              className="pointer-events-auto w-10 h-10 rounded-full bg-[#0a192f] border-2 border-amber-400 text-amber-400 hover:bg-amber-500 hover:text-slate-950 transition-all flex items-center justify-center shadow-xl shadow-slate-950/60 cursor-pointer"
+            >
+              <ChevronRight className="w-5 h-5 stroke-[2.5]" />
+            </button>
+          </div>
+
+        </div>
 
         <div className="bg-white shadow-2xl">
           {/* Subtle top tint overlay */}
@@ -189,7 +229,7 @@ export const Hero = () => {
             background: 'linear-gradient(to bottom, rgba(251,191,36,0.04), transparent)'
           }} />
 
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
             <div className="grid grid-cols-2 lg:grid-cols-4 divide-x divide-slate-100">
               {statsData.map((stat, i) => (
                 <StatCard key={i} stat={stat} index={i} started={statsStarted} />
@@ -202,29 +242,32 @@ export const Hero = () => {
         </div>
       </div>
 
-      {/* Slider Controls */}
+      {/* Desktop Slider Controls */}
       <button
         onClick={prevSlide}
-        className="absolute left-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-black/30 border border-white/25 text-white hover:bg-amber-500 hover:border-amber-500 hover:text-slate-950 transition-all flex items-center justify-center shadow-2xl cursor-pointer backdrop-blur-sm"
+        aria-label="Previous slide"
+        className="hidden sm:flex absolute left-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-black/35 border border-white/25 text-white hover:bg-amber-500 hover:border-amber-500 hover:text-slate-950 transition-all items-center justify-center shadow-2xl cursor-pointer backdrop-blur-sm"
       >
         <ChevronLeft className="w-6 h-6" />
       </button>
       <button
         onClick={nextSlide}
-        className="absolute right-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-black/30 border border-white/25 text-white hover:bg-amber-500 hover:border-amber-500 hover:text-slate-950 transition-all flex items-center justify-center shadow-2xl cursor-pointer backdrop-blur-sm"
+        aria-label="Next slide"
+        className="hidden sm:flex absolute right-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-black/35 border border-white/25 text-white hover:bg-amber-500 hover:border-amber-500 hover:text-slate-950 transition-all items-center justify-center shadow-2xl cursor-pointer backdrop-blur-sm"
       >
         <ChevronRight className="w-6 h-6" />
       </button>
 
-      {/* Slide Dots */}
-      <div className="absolute bottom-36 left-1/2 -translate-x-1/2 z-20 flex gap-2.5">
+      {/* Desktop Slide Dots */}
+      <div className="hidden sm:flex absolute bottom-36 left-1/2 -translate-x-1/2 z-20 gap-2.5">
         {heroSlidesData.map((_, idx) => (
           <button
             key={idx}
             onClick={() => handleSlideChange(idx)}
+            aria-label={`Go to slide ${idx + 1}`}
             style={{
-              width: idx === currentIdx ? '36px' : '10px',
-              height: '10px',
+              width: idx === currentIdx ? '32px' : '8px',
+              height: '8px',
               borderRadius: '99px',
               background: idx === currentIdx ? '#f59e0b' : 'rgba(255,255,255,0.35)',
               boxShadow: idx === currentIdx ? '0 0 12px rgba(245,158,11,0.7)' : 'none',

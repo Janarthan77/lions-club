@@ -115,7 +115,7 @@ export const Events = () => {
   });
 
   return (
-    <section id="events" className="relative py-24 bg-slate-50 border-t border-slate-100">
+    <section id="events" className="relative py-14 sm:py-24 bg-slate-50 border-t border-slate-100">
 
       {/* Top accent */}
       <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-amber-400 via-amber-500 to-amber-400" />
@@ -123,42 +123,42 @@ export const Events = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-12">
-          <h2 className="text-4xl sm:text-5xl font-extrabold font-serif-gold text-[#0a192f] mb-4 leading-tight">
+        <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-12">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold font-serif-gold text-[#0a192f] mb-3 sm:mb-4 leading-tight">
             நிகழ்ச்சிகள் & <span className="gold-text-gradient">சேவைத் திட்டங்கள்</span>
           </h2>
-          <p className="text-slate-500 text-base font-medium leading-relaxed">
+          <p className="text-slate-500 text-xs sm:text-base font-medium leading-relaxed">
             சாயல்குடி மக்களுக்கு சமூகத்தில் நிலைபேறான மாற்றங்களை உருவாக்கும் ரோட்டரியின் பிரதான சேவைப் பணிகள்
           </p>
-          <div className="w-24 h-1 mx-auto rounded-full gold-gradient-bg mt-5" />
+          <div className="w-20 sm:w-24 h-1 mx-auto rounded-full gold-gradient-bg mt-4 sm:mt-5" />
         </div>
 
         {/* Filter Tabs (All / Upcoming / Completed) */}
-        <div className="flex items-center justify-center gap-3 mb-12 flex-wrap">
+        <div className="flex items-center justify-center gap-2 sm:gap-3 mb-8 sm:mb-12 flex-wrap">
           <button
             onClick={() => setActiveTab('all')}
-            className={`px-6 py-2.5 rounded-full text-xs font-black uppercase tracking-wider transition-all duration-300 cursor-pointer ${
+            className={`px-4 py-2 sm:px-6 sm:py-2.5 rounded-full text-[11px] sm:text-xs font-black uppercase tracking-wider transition-all duration-300 cursor-pointer ${
               activeTab === 'all'
                 ? 'bg-[#0a192f] text-amber-400 shadow-lg scale-105'
                 : 'bg-white text-slate-600 border border-slate-200 hover:bg-slate-100'
             }`}
           >
-            அனைத்து நிகழ்வுகள் ({eventsList.length})
+            அனைத்தும் ({eventsList.length})
           </button>
           <button
             onClick={() => setActiveTab('upcoming')}
-            className={`px-6 py-2.5 rounded-full text-xs font-black uppercase tracking-wider transition-all duration-300 cursor-pointer flex items-center gap-2 ${
+            className={`px-4 py-2 sm:px-6 sm:py-2.5 rounded-full text-[11px] sm:text-xs font-black uppercase tracking-wider transition-all duration-300 cursor-pointer flex items-center gap-1.5 sm:gap-2 ${
               activeTab === 'upcoming'
                 ? 'bg-amber-500 text-slate-950 shadow-lg scale-105'
                 : 'bg-white text-slate-600 border border-slate-200 hover:bg-slate-100'
             }`}
           >
             <Calendar className="w-3.5 h-3.5" />
-            வரவிருக்கும் நிகழ்வுகள் ({eventsList.filter(e => e.status === 'upcoming').length})
+            வரவிருப்பவை ({eventsList.filter(e => e.status === 'upcoming').length})
           </button>
           <button
             onClick={() => setActiveTab('completed')}
-            className={`px-6 py-2.5 rounded-full text-xs font-black uppercase tracking-wider transition-all duration-300 cursor-pointer flex items-center gap-2 ${
+            className={`px-4 py-2 sm:px-6 sm:py-2.5 rounded-full text-[11px] sm:text-xs font-black uppercase tracking-wider transition-all duration-300 cursor-pointer flex items-center gap-1.5 sm:gap-2 ${
               activeTab === 'completed'
                 ? 'bg-emerald-600 text-white shadow-lg scale-105'
                 : 'bg-white text-slate-600 border border-slate-200 hover:bg-slate-100'
@@ -170,11 +170,11 @@ export const Events = () => {
         </div>
 
         {/* Events Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-7">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-7">
           {filteredEvents.map((evt, idx) => (
             <div
               key={idx}
-              className="group flex flex-col rounded-3xl overflow-hidden bg-white transition-all duration-400 cursor-pointer border border-slate-200"
+              className="group flex flex-col rounded-2xl sm:rounded-3xl overflow-hidden bg-white transition-all duration-400 cursor-pointer border border-slate-200"
               style={{
                 boxShadow: hovered === idx
                   ? `0 20px 40px rgba(0,0,0,0.1), 0 0 0 1px ${evt.accent}44`
@@ -186,7 +186,7 @@ export const Events = () => {
               onMouseLeave={() => setHovered(null)}
             >
               {/* Image Container */}
-              <div className="relative h-56 overflow-hidden bg-slate-100">
+              <div className="relative h-48 sm:h-56 overflow-hidden bg-slate-100">
                 <img
                   src={evt.image}
                   alt={evt.title}
@@ -194,26 +194,26 @@ export const Events = () => {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
 
-                {/* Status Badge (Upcoming vs Completed) */}
-                <div className="absolute top-4 left-4 flex flex-col gap-2">
+                {/* Status Badge */}
+                <div className="absolute top-3 left-3 sm:top-4 sm:left-4 flex flex-col gap-1.5 sm:gap-2">
                   <span
-                    className={`px-3 py-1 rounded-full text-[11px] font-extrabold flex items-center gap-1.5 shadow-md backdrop-blur-sm ${
+                    className={`px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full text-[10px] sm:text-[11px] font-extrabold flex items-center gap-1.5 shadow-md backdrop-blur-sm ${
                       evt.status === 'upcoming'
                         ? 'bg-amber-400 text-slate-950'
                         : 'bg-emerald-500 text-white'
                     }`}
                   >
                     {evt.status === 'upcoming' ? (
-                      <span className="w-2 h-2 rounded-full bg-slate-950 animate-ping" />
+                      <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-slate-950 animate-ping" />
                     ) : (
-                      <CheckCircle2 className="w-3.5 h-3.5" />
+                      <CheckCircle2 className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
                     )}
                     <span>{evt.statusText}</span>
                   </span>
 
                   {/* Category Tag */}
                   <span
-                    className="px-3 py-1 rounded-full text-[11px] font-bold inline-flex items-center gap-1 shadow-sm w-fit"
+                    className="px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full text-[10px] sm:text-[11px] font-bold inline-flex items-center gap-1 shadow-sm w-fit"
                     style={{ background: 'white', color: evt.tagColor, border: `1px solid ${evt.tagBorder}` }}
                   >
                     <Tag className="w-3 h-3" />
@@ -222,9 +222,9 @@ export const Events = () => {
                 </div>
 
                 {/* Date box */}
-                <div className="absolute top-4 right-4 bg-white/95 backdrop-blur-sm rounded-2xl px-3 py-2 text-center shadow min-w-[50px]">
-                  <div className="text-[9px] font-black uppercase tracking-widest" style={{ color: evt.accent }}>{evt.month}</div>
-                  <div className="text-2xl font-black leading-none text-slate-900">{evt.day}</div>
+                <div className="absolute top-3 right-3 sm:top-4 sm:right-4 bg-white/95 backdrop-blur-sm rounded-xl sm:rounded-2xl px-2.5 py-1.5 sm:px-3 sm:py-2 text-center shadow min-w-[45px] sm:min-w-[50px]">
+                  <div className="text-[8px] sm:text-[9px] font-black uppercase tracking-widest" style={{ color: evt.accent }}>{evt.month}</div>
+                  <div className="text-xl sm:text-2xl font-black leading-none text-slate-900">{evt.day}</div>
                 </div>
               </div>
 
@@ -235,10 +235,10 @@ export const Events = () => {
               />
 
               {/* Content */}
-              <div className="flex-1 flex flex-col p-6 gap-4">
-                <div className="flex-1 space-y-2">
+              <div className="flex-1 flex flex-col p-5 sm:p-6 gap-3 sm:gap-4">
+                <div className="flex-1 space-y-1.5 sm:space-y-2">
                   <h3
-                    className="text-lg font-extrabold font-serif-gold leading-snug transition-colors duration-300"
+                    className="text-base sm:text-lg font-extrabold font-serif-gold leading-snug transition-colors duration-300"
                     style={{ color: hovered === idx ? evt.accent : '#0a192f' }}
                   >
                     {evt.title}
@@ -247,17 +247,17 @@ export const Events = () => {
                 </div>
 
                 {/* Meta details */}
-                <div className="pt-4 border-t border-slate-100 space-y-2.5">
+                <div className="pt-3 sm:pt-4 border-t border-slate-100 space-y-2">
                   <div className="flex items-center gap-2 text-xs font-semibold text-slate-600">
-                    <MapPin className="w-4 h-4 flex-shrink-0" style={{ color: evt.accent }} />
-                    <span>{evt.location}</span>
+                    <MapPin className="w-3.5 h-3.5 sm:w-4 sm:h-4 flex-shrink-0" style={{ color: evt.accent }} />
+                    <span className="truncate">{evt.location}</span>
                   </div>
                   <div className="flex items-center gap-2 text-xs font-semibold text-slate-600">
-                    <Clock className="w-4 h-4 flex-shrink-0" style={{ color: evt.accent }} />
+                    <Clock className="w-3.5 h-3.5 sm:w-4 sm:h-4 flex-shrink-0" style={{ color: evt.accent }} />
                     <span>{evt.time}</span>
                   </div>
                   <div className="flex items-center gap-2 text-xs font-semibold text-slate-600">
-                    <Users className="w-4 h-4 flex-shrink-0" style={{ color: evt.accent }} />
+                    <Users className="w-3.5 h-3.5 sm:w-4 sm:h-4 flex-shrink-0" style={{ color: evt.accent }} />
                     <span>{evt.participants}</span>
                   </div>
                 </div>

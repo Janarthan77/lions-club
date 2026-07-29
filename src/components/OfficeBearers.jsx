@@ -4,7 +4,7 @@ import thalaivarImg from '../assets/thalaivar.jpg';
 
 const bearersData = [
   {
-    name: "Rtn. K.P. கிருஷ்ணமூர்த்தி",
+    name: "Rtn. K.P. கிருஷ்ணமூர்த்தி (குருமுருகா)",
     role: "சங்கத் தலைவர்",
     roleEn: "CLUB PRESIDENT",
     image: thalaivarImg,
@@ -16,10 +16,6 @@ const bearersData = [
       "முன்னாள் வணிகர் சங்கத் தலைவராக வணிகர்கள் மற்றும் பொதுமக்களின் நலனுக்காகத் தொடர்ந்து பாடுபட்டவர்."
     ]
   },
-
-
-
-
   {
     name: "Rtn. டாக்டர் கண்ணன்",
     role: "செயலாளர்",
@@ -78,14 +74,14 @@ export const OfficeBearers = () => {
   const scrollRef = useRef(null);
 
   const scrollLeft = () => {
-    scrollRef.current?.scrollBy({ left: -410, behavior: 'smooth' });
+    scrollRef.current?.scrollBy({ left: -340, behavior: 'smooth' });
   };
   const scrollRight = () => {
-    scrollRef.current?.scrollBy({ left: 410, behavior: 'smooth' });
+    scrollRef.current?.scrollBy({ left: 340, behavior: 'smooth' });
   };
 
   return (
-    <section id="bearers" className="relative py-20 bg-slate-50/50 border-t border-slate-100 overflow-hidden">
+    <section id="bearers" className="relative py-14 sm:py-20 bg-slate-50/50 border-t border-slate-100 overflow-hidden">
 
       {/* Top accent line */}
       <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-amber-400 via-amber-500 to-amber-400" />
@@ -93,29 +89,29 @@ export const OfficeBearers = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Section Header */}
-        <div className="flex items-center justify-between mb-12">
+        <div className="flex flex-row items-center justify-between mb-8 sm:mb-12">
           <div>
-            <h2 className="text-3xl sm:text-4xl font-extrabold font-serif-gold text-[#0a192f] leading-tight">
+            <h2 className="text-2xl sm:text-4xl font-extrabold font-serif-gold text-[#0a192f] leading-tight">
               ரோட்டரி <span className="gold-text-gradient">நிர்வாகிகள்</span>
             </h2>
-            <div className="w-16 h-1 rounded-full gold-gradient-bg mt-3" />
+            <div className="w-12 sm:w-16 h-1 rounded-full gold-gradient-bg mt-2 sm:mt-3" />
           </div>
 
           {/* Scroll controls */}
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 sm:gap-3">
             <button
               onClick={scrollLeft}
               aria-label="Scroll left"
-              className="w-11 h-11 rounded-full bg-white border border-slate-200 text-slate-700 hover:bg-amber-500 hover:border-amber-500 hover:text-white transition-all duration-200 flex items-center justify-center shadow-sm hover:shadow-md cursor-pointer"
+              className="w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-white border border-slate-200 text-slate-700 hover:bg-amber-500 hover:border-amber-500 hover:text-white transition-all duration-200 flex items-center justify-center shadow-sm hover:shadow-md cursor-pointer"
             >
-              <ChevronLeft className="w-5 h-5" />
+              <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5" />
             </button>
             <button
               onClick={scrollRight}
               aria-label="Scroll right"
-              className="w-11 h-11 rounded-full bg-white border border-slate-200 text-slate-700 hover:bg-amber-500 hover:border-amber-500 hover:text-white transition-all duration-200 flex items-center justify-center shadow-sm hover:shadow-md cursor-pointer"
+              className="w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-white border border-slate-200 text-slate-700 hover:bg-amber-500 hover:border-amber-500 hover:text-white transition-all duration-200 flex items-center justify-center shadow-sm hover:shadow-md cursor-pointer"
             >
-              <ChevronRight className="w-5 h-5" />
+              <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5" />
             </button>
           </div>
         </div>
@@ -123,22 +119,22 @@ export const OfficeBearers = () => {
         {/* Horizontal scroll container */}
         <div className="relative">
           {/* Left & Right gradient fades */}
-          <div className="absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-slate-50/80 to-transparent z-10 pointer-events-none" />
-          <div className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-slate-50/80 to-transparent z-10 pointer-events-none" />
+          <div className="absolute left-0 top-0 bottom-0 w-6 sm:w-8 bg-gradient-to-r from-slate-50/80 to-transparent z-10 pointer-events-none" />
+          <div className="absolute right-0 top-0 bottom-0 w-6 sm:w-8 bg-gradient-to-l from-slate-50/80 to-transparent z-10 pointer-events-none" />
 
           <div
             ref={scrollRef}
-            className="flex gap-7 overflow-x-auto pb-6 pt-2 scroll-smooth"
+            className="flex gap-4 sm:gap-7 overflow-x-auto pb-6 pt-2 scroll-smooth"
             style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
           >
             {bearersData.map((bearer, idx) => (
               <div
                 key={idx}
-                className="group flex-shrink-0 flex flex-col rounded-3xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 bg-white border border-slate-200"
-                style={{ width: '380px' }}
+                className="group flex-shrink-0 flex flex-col rounded-2xl sm:rounded-3xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 bg-white border border-slate-200"
+                style={{ width: 'min(380px, 86vw)' }}
               >
-                {/* Extra Big & Grand Photo Container */}
-                <div className="relative overflow-hidden bg-slate-100" style={{ height: '440px' }}>
+                {/* Photo Container */}
+                <div className="relative overflow-hidden bg-slate-100 h-[360px] sm:h-[440px]">
                   <img
                     src={bearer.image}
                     alt={bearer.name}
@@ -150,27 +146,27 @@ export const OfficeBearers = () => {
                 </div>
 
                 {/* Content Container */}
-                <div className="p-6 flex flex-col flex-1 bg-white">
+                <div className="p-4 sm:p-6 flex flex-col flex-1 bg-white">
 
                   {/* Name */}
-                  <h3 className="text-xl font-extrabold text-[#0a192f] font-serif-gold leading-snug mb-1 text-center">
+                  <h3 className="text-lg sm:text-xl font-extrabold text-[#0a192f] font-serif-gold leading-snug mb-1 text-center">
                     {bearer.name}
                   </h3>
 
                   {/* Role / Designation */}
                   <p
-                    className="text-xs font-black uppercase tracking-[0.15em] text-center mb-5"
+                    className="text-[11px] sm:text-xs font-black uppercase tracking-[0.15em] text-center mb-4 sm:mb-5"
                     style={{ color: bearer.accentColor }}
                   >
                     {bearer.role} • <span className="opacity-80">{bearer.roleEn}</span>
                   </p>
 
                   {/* Tags Pills */}
-                  <div className="flex flex-wrap justify-center gap-1.5 mb-6">
+                  <div className="flex flex-wrap justify-center gap-1 sm:gap-1.5 mb-5 sm:mb-6">
                     {bearer.tags.map((tag, tIdx) => (
                       <span
                         key={tIdx}
-                        className="px-3 py-1 rounded-full text-xs font-bold text-slate-600 bg-slate-100 border border-slate-200/70"
+                        className="px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full text-[11px] sm:text-xs font-bold text-slate-600 bg-slate-100 border border-slate-200/70"
                       >
                         {tag}
                       </span>
@@ -178,14 +174,14 @@ export const OfficeBearers = () => {
                   </div>
 
                   {/* Checkmark Bullet Points (Professional History) */}
-                  <div className="space-y-3 pt-4 border-t border-slate-100 flex-1">
+                  <div className="space-y-2.5 sm:space-y-3 pt-3 sm:pt-4 border-t border-slate-100 flex-1">
                     {bearer.history.map((item, hIdx) => (
-                      <div key={hIdx} className="flex items-start gap-2.5">
+                      <div key={hIdx} className="flex items-start gap-2 sm:gap-2.5">
                         <CheckCircle2
-                          className="w-4 h-4 mt-0.5 flex-shrink-0"
+                          className="w-3.5 h-3.5 sm:w-4 sm:h-4 mt-0.5 flex-shrink-0"
                           style={{ color: bearer.accentColor }}
                         />
-                        <p className="text-xs text-slate-600 font-medium leading-relaxed">
+                        <p className="text-[11px] sm:text-xs text-slate-600 font-medium leading-relaxed">
                           {item}
                         </p>
                       </div>

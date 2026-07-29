@@ -45,22 +45,22 @@ export const Navbar = () => {
       <div 
         className={`transition-all duration-300 ${
           isScrolled 
-            ? 'py-2.5 bg-white/95 border-b border-amber-500/30 backdrop-blur-xl shadow-md' 
-            : 'py-4 bg-white/90 border-b border-slate-200/80 backdrop-blur-md'
+            ? 'py-2 sm:py-2.5 bg-white/95 border-b border-amber-500/30 backdrop-blur-xl shadow-md' 
+            : 'py-3 sm:py-4 bg-white/90 border-b border-slate-200/80 backdrop-blur-md'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between">
             
-            {/* Brand Logo — Clean & Bold */}
-            <a href="#home" className="flex items-center gap-3.5 group">
-              <div className="w-11 h-11 rounded-2xl bg-gradient-to-tr from-amber-500 via-amber-400 to-yellow-300 p-0.5 shadow-md shadow-amber-500/25 group-hover:scale-105 transition-transform duration-300">
-                <div className="w-full h-full bg-[#0a192f] rounded-[14px] flex items-center justify-center">
-                  <Award className="w-5 h-5 text-amber-400" />
+            {/* Brand Logo — Clean & Responsive */}
+            <a href="#home" className="flex items-center gap-2.5 sm:gap-3.5 group">
+              <div className="w-9 h-9 sm:w-11 sm:h-11 rounded-xl sm:rounded-2xl bg-gradient-to-tr from-amber-500 via-amber-400 to-yellow-300 p-0.5 shadow-md shadow-amber-500/25 group-hover:scale-105 transition-transform duration-300">
+                <div className="w-full h-full bg-[#0a192f] rounded-[10px] sm:rounded-[14px] flex items-center justify-center">
+                  <Award className="w-4 h-4 sm:w-5 sm:h-5 text-amber-400" />
                 </div>
               </div>
               <div className="flex flex-col">
-                <span className="font-serif-gold text-lg sm:text-xl font-extrabold tracking-tight text-[#0a192f] leading-none">
+                <span className="font-serif-gold text-base sm:text-xl font-extrabold tracking-tight text-[#0a192f] leading-none">
                   ரோட்டரி கிளப் சாயல்குடி
                 </span>
               </div>
@@ -83,34 +83,37 @@ export const Navbar = () => {
               ))}
             </nav>
 
-            {/* Mobile Menu Hamburger */}
+            {/* Mobile Menu Hamburger Button */}
             <button 
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)} 
               aria-label="Toggle mobile menu"
-              className="lg:hidden p-2.5 rounded-2xl bg-slate-100 border border-slate-200 text-slate-900 hover:bg-amber-50 hover:text-amber-700 transition-colors focus:outline-none"
+              className="lg:hidden p-2 rounded-xl sm:rounded-2xl bg-slate-100 border border-slate-200 text-slate-900 hover:bg-amber-50 hover:text-amber-700 transition-colors focus:outline-none"
             >
-              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              {mobileMenuOpen ? <X className="w-5 h-5 sm:w-6 sm:h-6" /> : <Menu className="w-5 h-5 sm:w-6 sm:h-6" />}
             </button>
 
           </div>
         </div>
 
-        {/* Mobile Drawer Menu */}
+        {/* Mobile Drawer Menu & Overlay */}
         {mobileMenuOpen && (
-          <div className="lg:hidden bg-white/98 border-b border-amber-500/30 px-4 py-5 space-y-3 shadow-2xl backdrop-blur-xl animate-fadeIn mt-2">
-            <div className="flex flex-col gap-1.5">
+          <div className="lg:hidden bg-white border-b border-amber-500/30 px-4 py-4 space-y-2 shadow-2xl backdrop-blur-2xl animate-fadeIn border-t border-slate-100">
+            <div className="flex flex-col gap-1">
               {navItems.map((item) => (
                 <a
                   key={item.id}
                   href={`#${item.id}`}
                   onClick={() => setMobileMenuOpen(false)}
-                  className={`px-4 py-3 rounded-2xl text-sm font-extrabold transition-all ${
+                  className={`px-4 py-2.5 rounded-xl text-sm font-extrabold transition-all flex items-center justify-between ${
                     activeSection === item.id
-                      ? 'bg-[#0a192f] text-amber-400'
+                      ? 'bg-[#0a192f] text-amber-400 shadow'
                       : 'text-slate-800 hover:bg-amber-50 hover:text-amber-700'
                   }`}
                 >
-                  {item.label}
+                  <span>{item.label}</span>
+                  {activeSection === item.id && (
+                    <span className="w-1.5 h-1.5 rounded-full bg-amber-400" />
+                  )}
                 </a>
               ))}
             </div>
